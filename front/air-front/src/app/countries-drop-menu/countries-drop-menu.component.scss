@@ -1,0 +1,58 @@
+.dropdown-menu {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 1);
+  padding: 9px 22px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.dropdown-menu-pol {
+  position: fixed;
+  top: 200px;
+  right: 15px;
+  background: rgba(255, 255, 255, 1);
+  padding: 9px 22px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+mat-slider {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  width: 70%;
+  height: 10%;
+  transform: translateX(-50%);
+  ::ng-deep .mat-slider-track-fill {
+    height: 6px;
+  }
+  ::ng-deep .mat-slider-thumb {
+    width: 25px;
+    height: 25px;
+    bottom: -14px;
+  }
+}
+
+::ng-deep .mat-slider-horizontal {
+  .mat-slider-track-wrapper {
+    height: 6px !important;
+    .mat-slider-track-background {
+      height: 6px;
+    }
+  }
+  ::ng-deep .mat-slider-ticks-container {
+    height: 6px !important;
+    .mat-slider-ticks {
+      height: 6px;
+    }
+  }
+}
+
+mat-expansion-panel-header {
+  position: fixed;
+  top: 200px;
+  right: 15px;
+}

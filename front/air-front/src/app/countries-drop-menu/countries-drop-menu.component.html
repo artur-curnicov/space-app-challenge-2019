@@ -1,0 +1,37 @@
+<mat-form-field class="dropdown-menu">
+  <mat-label>Countries</mat-label>
+  <mat-select
+    [(ngModel)]="selectedCountry"
+    (selectionChange)="positionOnSelectedCountry()"
+  >
+    <mat-option *ngFor="let country of countries" [value]="country.name">
+      {{ country.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field class="dropdown-menu-pol">
+  <mat-label>Polluants</mat-label>
+  <mat-select
+    [(ngModel)]="selectedPolluant"
+    (selectionChange)="dispatchObject()"
+  >
+    <mat-option *ngFor="let polluant of polluants" [value]="polluant.code">
+      {{ polluant.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-slider
+  class="slider"
+  class="example-margin"
+  [max]="2030"
+  [min]="2020"
+  [step]="1"
+  (valueChange)="predictPollut()"
+  [thumbLabel]="currentYear"
+  [tickInterval]="1"
+  [(ngModel)]="currentYear"
+  [value]="value"
+>
+</mat-slider>
