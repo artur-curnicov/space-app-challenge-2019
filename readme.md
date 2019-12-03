@@ -1,6 +1,6 @@
 # Air Pollution Application
 
-Welcome to Air Pollution Aplication. You can see the countries where the air is polluted, as well as the chemical elements that pollute the air in that state.
+Welcome to Air Pollution Application. You can see the countries where the air is polluted, as well as the chemical elements that pollute the air in that state.
 
 ## Installation
 
@@ -11,7 +11,7 @@ cd back
 npm run start
 ```
 
-To run front:
+To run front
 
 ```bash
 cd front/air-front
