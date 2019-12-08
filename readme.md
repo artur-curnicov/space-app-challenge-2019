@@ -15,5 +15,6 @@ To run front
 
 ```bash
 cd front/air-front
+npm install
 ng serve
 ```

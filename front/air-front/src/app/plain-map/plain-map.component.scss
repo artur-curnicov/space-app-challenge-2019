@@ -21,3 +21,27 @@
     width: 100vw;
     height: 100vh;
 }
+
+#legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 220px;
+
+  .legend-items {
+    text-align: left;
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+
+      div {
+        width: 40px;
+      }
+
+      img {
+        height: 25px;
+      }
+    }
+  }
+}
