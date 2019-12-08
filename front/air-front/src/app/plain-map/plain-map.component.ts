@@ -16,7 +16,8 @@ export class PlainMapComponent implements OnInit {
     ymaps.ready().then(() => {
           myMap = new ymaps.Map('map', {
             center: [47.202356, 28.466093],
-            zoom: 7
+            zoom: 7,
+            controls: ["zoomControl"]
           });
         });
     }
