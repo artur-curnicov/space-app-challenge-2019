@@ -1,15 +1,12 @@
 const express = require('express')
 const fetch = require('node-fetch')
 const cors = require('cors')
-const fs = require('fs')
-const csv=require('csvtojson')
 
 const app = express()
 app.use(cors())
 
 const MAX_NR = 20
 const API_URL = 'https://api.openaq.org/v1'
-const csvFilePath='./data.csv'
 
 app.get('/air-info', (req, res) => {
     const country = req.param('country') || 'US'
@@ -46,8 +43,8 @@ app.get('/air-info', (req, res) => {
         });
         }
 
-        res.json(arr)
-
+        let sortedArray = quickSort(arr, 0, arr.length - 1);
+        res.json(sortedArray)
     })
 })
 
@@ -59,8 +56,6 @@ app.get('/countries', (req, res) => {
         
         for (let result of data.results) {
             let obj = {}
-            if (result.code === 'VN')
-                result.name = 'Vietnam'
 
             if (result.code !== undefined && result.name !== undefined) {
                 obj.code = result.code
@@ -73,28 +68,46 @@ app.get('/countries', (req, res) => {
     })
 })
 
-app.get('/polluants', (req, res) => {
-    fs.readFile('./particles.json', 'utf8', (err, jsonString) => {
-        if (err) {
-            console.log("Error reading file from disk:", err)
-            return
-        }
-
-        const customer = JSON.parse(jsonString)
-        res.json(customer)
-    })
-})
-
-
-app.get('/ml', (req, res) => {
-    csv()
-.fromFile(csvFilePath)
-.then((jsonObj)=>{
-    res.json(jsonObj)
-})
-})
-
 const PORT = process.env.PORT || 3003
 app.listen(PORT, () => {
     console.log('Server is up and listening on port ' + PORT)
 })
+
+function swap(items, leftIndex, rightIndex){
+    var temp = items[leftIndex];
+    items[leftIndex] = items[rightIndex];
+    items[rightIndex] = temp;
+}
+function partition(items, left, right) {
+    var pivot   = items[Math.floor((right + left) / 2)],
+        i       = left,
+        j       = right;
+    while (i <= j) {
+        while (items[i].value > pivot.value) {
+            i++;
+        }
+        while (items[j].value < pivot.value) {
+            j--;
+        }
+        if (i <= j) {
+            swap(items, i, j);
+            i++;
+            j--;
+        }
+    }
+    return i;
+}
+
+function quickSort(items, left, right) {
+    var index;
+    if (items.length > 1) {
+        index = partition(items, left, right);
+        if (left < index - 1) {
+            quickSort(items, left, index - 1);
+        }
+        if (index < right) {
+            quickSort(items, index, right);
+        }
+    }
+    return items;
+}
